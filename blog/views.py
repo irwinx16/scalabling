@@ -16,11 +16,11 @@ def blog_category(request, category):
         ).order_by(
             '-created_on'
         )
-        context = {
-            "category": category,
-            "posts": posts
+    context = {
+        "category": category,
+        "posts": posts,
         }
-        return render(request, "blog_category.html", context)
+    return render(request, "blog_category.html", context)
 
 def blog_detail(request, pk):
     post = Post.objects.get(pk=pk)
