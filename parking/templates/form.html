@@ -1,0 +1,9 @@
+<h1>Enter Address</h1>
+
+<form action="thanks/" method="post">
+    {% csrf_token %}
+    <table>
+        {{ form }}
+    </table>
+    <input type="submit" value="Submit">
+</form>
