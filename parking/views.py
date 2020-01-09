@@ -9,10 +9,14 @@ def get_address(request):
         form = AddressForm(request.POST)
         if form.is_valid():
 
-            addr = form.cleaned_data['add_field']
+            data = form.cleaned_data['add_field']
+            addr = data.split(' ')
 
             context = {
-            'address': addr
+            'st_num': addr[0],
+            'st_dir': addr[1],
+            'st_name': addr[2],
+            'st_type': addr[3]
             }
 
             template = loader.get_template('thanks.html')
