@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.template import loader
 from django.http import HttpResponse
 from .forms import AddressForm
+import requests
 
 def get_address(request):
 
@@ -13,7 +14,11 @@ def get_address(request):
             data = form.cleaned_data['add_field']
             addr = data.upper().split(' ')
 
-            print(addr)
+            url = 'https://data.cityofchicago.org/resource/u9xt-hiju.json?'
+            params = dict(street_direction='W', street_name='DIVISION',street_type='ST')
+            res = requests.get(url, params=params).json()
+
+            print(res)
 
             context = {
             'st_num': addr[0],
