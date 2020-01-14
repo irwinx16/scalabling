@@ -7,10 +7,13 @@ def get_address(request):
 
     if request.method == 'POST':
         form = AddressForm(request.POST)
-        if form.is_valid():
 
+        if form.is_valid():
+            #clean the data
             data = form.cleaned_data['add_field']
-            addr = data.split(' ')
+            addr = data.upper().split(' ')
+
+            print(addr)
 
             context = {
             'st_num': addr[0],
@@ -18,6 +21,7 @@ def get_address(request):
             'st_name': addr[2],
             'st_type': addr[3]
             }
+            breakpoint()
 
             template = loader.get_template('thanks.html')
 
