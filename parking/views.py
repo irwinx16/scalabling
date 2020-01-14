@@ -14,11 +14,18 @@ def get_address(request):
             data = form.cleaned_data['add_field']
             addr = data.upper().split(' ')
 
+            #call chicago api
             url = 'https://data.cityofchicago.org/resource/u9xt-hiju.json?'
-            params = dict(street_direction='W', street_name='DIVISION',street_type='ST')
+
+            #pass params for api
+            params = dict(street_direction=addr[1], street_name=addr[2],street_type=addr[3])
+
+            #get and save response in json
             res = requests.get(url, params=params).json()
 
-            print(res)
+            for field in res:
+                if (int(field['address_range_low']) <= int(addr[0]) and int(field['address_range_high']) >= int(addr[0]) ):
+                    print(field)
 
             context = {
             'st_num': addr[0],
@@ -26,7 +33,7 @@ def get_address(request):
             'st_name': addr[2],
             'st_type': addr[3]
             }
-            breakpoint()
+
 
             template = loader.get_template('thanks.html')
 
