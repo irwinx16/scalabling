@@ -43,10 +43,10 @@ def get_address(request):
 
 
             context = {
-            'st_num': addr[0],
-            'st_dir': addr[1],
-            'st_name': addr[2],
-            'st_type': addr[3],
+            'st_num': st_num,
+            'st_dir': st_dir,
+            'st_name': st_name,
+            'st_type': st_type,
             'zone'  : addr_zone
             }
 
