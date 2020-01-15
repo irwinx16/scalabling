@@ -35,16 +35,19 @@ def get_address(request):
             #get and save response in json
             res = requests.get(url, params=params).json()
 
+            addr_zone = 'No zone needed'
             for field in res:
                 if (int(field['address_range_low']) <= st_num and int(field['address_range_high']) >= st_num ):
-                    print(field)
+                    addr_zone = field['zone']
+                    print(addr_zone)
 
 
             context = {
             'st_num': addr[0],
             'st_dir': addr[1],
             'st_name': addr[2],
-            'st_type': addr[3]
+            'st_type': addr[3],
+            'zone'  : addr_zone
             }
 
 
