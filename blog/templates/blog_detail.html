@@ -6,7 +6,7 @@
         {{ post.created_on.date }} |&nbsp;
         Categories:&nbsp;
         {% for category in post.categories.all %}
-        <a href="{% url 'blog_category' category.name %}">
+        <a href="{% url 'blog_category' category.name %}" class="text-dark">
             {{ category.name }}
         </a>&nbsp;
         {% endfor %}
@@ -21,7 +21,7 @@
         <div class="form-group">
             {{ form.body }}
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-dark">Submit</button>
     </form>
     <h3>Comments:</h3>
     {% for comment in comments %}
